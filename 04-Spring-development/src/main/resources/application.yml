@@ -1,0 +1,62 @@
+server:
+  port: '8082'
+
+spring:
+  profiles:
+    active: dev
+
+---
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  security:
+    enabled: false
+  port: '9090'
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: department_user
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/department_database
+    password: StrongPassword
+  jpa:
+    hibernate:
+      ddl-auto: update
+welcome:
+  message: '"Hello World!"'
+
+---
+
+spring:
+  profiles: qa
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: department_user
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/department_database-qa
+    password: StrongPassword
+  jpa:
+    hibernate:
+      ddl-auto: update
+welcome:
+  message: '"Hello World!"'
+
+---
+
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: department_user
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/department_database-prod
+    password: StrongPassword
+  jpa:
+    hibernate:
+      ddl-auto: update
+welcome:
+  message: '"Hello World!"'
